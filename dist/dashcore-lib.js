@@ -23671,8 +23671,8 @@ AbstractPayload.prototype.getHash = function(options) {
 AbstractPayload.prototype.sign = function(privateKey) {
   var payloadHash = this.getHash({ skipSignature: true });
   var signatureBuffer = hashSignature.signHash(payloadHash, privateKey);
-  this.vchSig = signatureBuffer.toString('hex');
-  this.payloadSigSize = this.vchSig.length / 2;
+  this.payloadSig = signatureBuffer.toString('hex');
+  this.payloadSigSize = this.payloadSig.length / 2;
   return this;
 };
 
@@ -23683,7 +23683,7 @@ AbstractPayload.prototype.sign = function(privateKey) {
  */
 AbstractPayload.prototype.verifySignature = function (publicKeyId) {
   var payloadHash = this.getHash({ skipSignature: true });
-  var signatureBuffer = Buffer.from(this.vchSig, 'hex');
+  var signatureBuffer = Buffer.from(this.payloadSig, 'hex');
   return hashSignature.verifySignature(payloadHash, signatureBuffer, publicKeyId);
 };
 
@@ -53520,9 +53520,9 @@ function SubTxCloseAccountPayload(payloadJSON) {
     //this.newPubKeySize = payloadJSON.newPubKeySize;
     this.newPubKey = payloadJSON.newPubKey;
     this.payloadSigSize = 0;
-    if (payloadJSON.vchSig) {
-      this.vchSig = payloadJSON.vchSig;
-      this.payloadSigSize = Number(this.vchSig.length) / 2;
+    if (payloadJSON.payloadSig) {
+      this.payloadSig = payloadJSON.payloadSig;
+      this.payloadSigSize = Number(this.payloadSig.length) / 2;
     }
 
     this.validate();
@@ -53552,7 +53552,7 @@ SubTxCloseAccountPayload.fromBuffer = function (rawPayload) {
   payload.payloadSigSize = payloadBufferReader.readVarintNum();
 
   if (!payloadBufferReader.finished()) {
-    payload.vchSig = payloadBufferReader.read(payload.payloadSigSize).reverse().toString('hex');
+    payload.payloadSig = payloadBufferReader.read(payload.payloadSigSize).reverse().toString('hex');
   }
 
   if (!payloadBufferReader.finished()) {
@@ -53597,12 +53597,12 @@ SubTxCloseAccountPayload.prototype.validate = function() {
   Preconditions.checkArgument(isSha256HexString(this.regTxHash), 'Expect regTxHash to be a hex string representing sha256 hash');
   Preconditions.checkArgument(isSha256HexString(this.hashPrevSubTx), 'Expect hashPrevSubTx to be a hex string representing sha256 hash');
   Preconditions.checkArgument(isUnsignedInteger(this.creditFee), 'Expect creditFee to be an unsigned integer');
-  if (this.vchSig && this.payloadSigSize !== 0) {
+  if (this.payloadSig && this.payloadSigSize !== 0) {
     Preconditions.checkArgumentType(this.payloadSigSize, 'number', 'payloadSigSize');
-    Preconditions.checkArgument(isHexString(this.vchSig), 'expect payloadSig to be a hex string but got ' + typeof this.vchSig);
+    Preconditions.checkArgument(isHexString(this.payloadSig), 'expect payloadSig to be a hex string but got ' + typeof this.payloadSig);
     Preconditions.checkArgument(isUnsignedInteger(this.payloadSigSize), 'Expect payloadSigSize to be an unsigned integer');
     Preconditions.checkArgument(this.payloadSigSize === constants.COMPACT_SIGNATURE_SIZE, 'Invalid payloadSigSize size');
-    Preconditions.checkArgument(this.vchSig.length === constants.COMPACT_SIGNATURE_SIZE * 2, 'Invalid Argument: Invalid payloadSigSize size');
+    Preconditions.checkArgument(this.payloadSig.length === constants.COMPACT_SIGNATURE_SIZE * 2, 'Invalid Argument: Invalid payloadSigSize size');
   }
   return true;
 };
@@ -53649,7 +53649,7 @@ SubTxCloseAccountPayload.prototype.toJSON = function toJSON(options) {
   };
   if (!skipSignature) {
     payloadJSON.payloadSigSize = this.payloadSigSize;
-    payloadJSON.vchSig = this.vchSig;
+    payloadJSON.payloadSig = this.payloadSig;
   }
   return payloadJSON;
 };
@@ -53669,7 +53669,7 @@ SubTxCloseAccountPayload.prototype.toBuffer = function toBuffer(options) {
   payloadBufferWriter.writeUInt64LEBN(new BigNumber(this.creditFee));
   if (!skipSignature) {
     payloadBufferWriter.writeVarintNum(this.payloadSigSize);
-    payloadBufferWriter.write(Buffer.from(this.vchSig, 'hex').reverse());
+    payloadBufferWriter.write(Buffer.from(this.payloadSig, 'hex').reverse());
   } else {
     payloadBufferWriter.writeVarintNum(0);
   }
@@ -53702,7 +53702,7 @@ var PUBKEY_ID_SIZE = constants.PUBKEY_ID_SIZE;
  * @property {number} version - payload version
  * @property {Buffer} pubKeyId
  * @property {string} userName
- * @property {string} [vchSig]
+ * @property {string} [payloadSig]
  */
 
 /**
@@ -53710,7 +53710,7 @@ var PUBKEY_ID_SIZE = constants.PUBKEY_ID_SIZE;
  * @property {number} version - payload version
  * @property {Buffer} pubKeyId
  * @property {string} userName
- * @property {string} [vchSig]
+ * @property {string} [payloadSig]
  */
 function SubTxRegisterPayload() {
   AbstractPayload.call(this);
@@ -53739,8 +53739,8 @@ SubTxRegisterPayload.serializeJSONToBuffer = function (blockchainUserPayload) {
     .write(userNameBuffer)
     .write(blockchainUserPayload.pubKeyId);
 
-  if (blockchainUserPayload.vchSig) {
-    var signatureBuf = Buffer.from(blockchainUserPayload.vchSig, 'hex');
+  if (blockchainUserPayload.payloadSig) {
+    var signatureBuf = Buffer.from(blockchainUserPayload.payloadSig, 'hex');
     payloadBufferWriter.writeVarintNum(signatureBuf.length);
     payloadBufferWriter.write(signatureBuf);
   } else {
@@ -53770,7 +53770,7 @@ SubTxRegisterPayload.fromBuffer = function fromBuffer(rawPayload) {
   }
 
   if (signatureSize > 0) {
-    blockchainUserPayload.vchSig = payloadBufferReader.read(signatureSize).toString('hex');
+    blockchainUserPayload.payloadSig = payloadBufferReader.read(signatureSize).toString('hex');
   }
 
   SubTxRegisterPayload.validatePayloadJSON(blockchainUserPayload.toJSON());
@@ -53789,8 +53789,8 @@ SubTxRegisterPayload.fromJSON = function fromJSON(payloadJson) {
   payload.setUserName(payloadJson.userName);
   payload.setPubKeyId(payloadJson.pubKeyId);
 
-  if (payloadJson.vchSig) {
-    payload.vchSig = payloadJson.vchSig;
+  if (payloadJson.payloadSig) {
+    payload.payloadSig = payloadJson.payloadSig;
   }
 
   return payload;
@@ -53812,9 +53812,9 @@ SubTxRegisterPayload.validatePayloadJSON = function (blockchainUserPayload) {
   Preconditions.checkArgumentType(blockchainUserPayload.userName, 'string', 'userName');
   Preconditions.checkArgument(blockchainUserPayload.userName.length > 1, 'userName is too short');
 
-  if (blockchainUserPayload.vchSig) {
-    Preconditions.checkArgument(isHexString(blockchainUserPayload.vchSig), 'expect vchSig to be a hex string but got ' + typeof blockchainUserPayload.vchSig);
-    Preconditions.checkArgument(blockchainUserPayload.vchSig.length === constants.COMPACT_SIGNATURE_SIZE * 2, 'Invalid vchSig size');
+  if (blockchainUserPayload.payloadSig) {
+    Preconditions.checkArgument(isHexString(blockchainUserPayload.payloadSig), 'expect payloadSig to be a hex string but got ' + typeof blockchainUserPayload.payloadSig);
+    Preconditions.checkArgument(blockchainUserPayload.payloadSig.length === constants.COMPACT_SIGNATURE_SIZE * 2, 'Invalid payloadSig size');
   }
 
 };
@@ -53876,7 +53876,7 @@ SubTxRegisterPayload.prototype.toJSON = function toJSON(options) {
   };
 
   if (!skipSignature) {
-    payloadJSON.vchSig = this.vchSig;
+    payloadJSON.payloadSig = this.payloadSig;
   }
 
   SubTxRegisterPayload.validatePayloadJSON(payloadJSON);
@@ -53952,9 +53952,9 @@ function SubTxResetKeyPayload(payloadJSON) {
     //this.newPubKeySize = payloadJSON.newPubKeySize;
     this.newPubKey = payloadJSON.newPubKey;
     this.payloadSigSize = 0;
-    if (payloadJSON.vchSig) {
-      this.vchSig = payloadJSON.vchSig;
-      this.payloadSigSize = Number(this.vchSig.length) / 2;
+    if (payloadJSON.payloadSig) {
+      this.payloadSig = payloadJSON.payloadSig;
+      this.payloadSigSize = Number(this.payloadSig.length) / 2;
     }
 
     this.validate();
@@ -53988,7 +53988,7 @@ SubTxResetKeyPayload.fromBuffer = function (rawPayload) {
   payload.payloadSigSize = payloadBufferReader.readVarintNum();
 
   if (!payloadBufferReader.finished()) {
-    payload.vchSig = payloadBufferReader.read(payload.payloadSigSize).reverse().toString('hex');
+    payload.payloadSig = payloadBufferReader.read(payload.payloadSigSize).reverse().toString('hex');
   }
 
   if (!payloadBufferReader.finished()) {
@@ -54040,12 +54040,12 @@ SubTxResetKeyPayload.prototype.validate = function() {
   //Preconditions.checkArgument(isUnsignedInteger(this.newPubKeySize), 'Expect newPubKeySize to be an unsigned integer');
   //Preconditions.checkArgument(this.newPubKeySize === constants.PUBKEY_ID_SIZE, 'Invalid newPubKeySize size');
   Preconditions.checkArgument(BufferUtil.isBuffer(this.newPubKey), 'expect newPubKey to be a Buffer but got ' + typeof this.newPubKey);
-  if (this.vchSig && this.payloadSigSize !== 0) {
+  if (this.payloadSig && this.payloadSigSize !== 0) {
     Preconditions.checkArgumentType(this.payloadSigSize, 'number', 'payloadSigSize');
-    Preconditions.checkArgument(isHexString(this.vchSig), 'expect payloadSig to be a hex string but got ' + typeof this.vchSig);
+    Preconditions.checkArgument(isHexString(this.payloadSig), 'expect payloadSig to be a hex string but got ' + typeof this.payloadSig);
     Preconditions.checkArgument(isUnsignedInteger(this.payloadSigSize), 'Expect payloadSigSize to be an unsigned integer');
     Preconditions.checkArgument(this.payloadSigSize === constants.COMPACT_SIGNATURE_SIZE, 'Invalid payloadSigSize size');
-    Preconditions.checkArgument(this.vchSig.length === constants.COMPACT_SIGNATURE_SIZE * 2, 'Invalid Argument: Invalid payloadSigSize size');
+    Preconditions.checkArgument(this.payloadSig.length === constants.COMPACT_SIGNATURE_SIZE * 2, 'Invalid Argument: Invalid payloadSigSize size');
   }
   return true;
 };
@@ -54114,7 +54114,7 @@ SubTxResetKeyPayload.prototype.toJSON = function toJSON(options) {
   };
   if (!skipSignature) {
     payloadJSON.payloadSigSize = this.payloadSigSize;
-    payloadJSON.vchSig = this.vchSig;
+    payloadJSON.payloadSig = this.payloadSig;
   }
   return payloadJSON;
 };
@@ -54137,7 +54137,7 @@ SubTxResetKeyPayload.prototype.toBuffer = function toBuffer(options) {
   payloadBufferWriter.write(this.newPubKey);
   if (!skipSignature) {
     payloadBufferWriter.writeVarintNum(this.payloadSigSize);
-    payloadBufferWriter.write(Buffer.from(this.vchSig, 'hex').reverse());
+    payloadBufferWriter.write(Buffer.from(this.payloadSig, 'hex').reverse());
   } else {
     payloadBufferWriter.writeVarintNum(0);
   }
@@ -54297,7 +54297,7 @@ var HASH_SIZE = constants.SHA256_HASH_SIZE;
  * @property {string} hashPrevSubTx
  * @property {Number} creditFee
  * @property {string} hashSTPacket
- * @property {string} [vchSig]
+ * @property {string} [payloadSig]
  */
 
 /**
@@ -54307,7 +54307,7 @@ var HASH_SIZE = constants.SHA256_HASH_SIZE;
  * @property {string} hashPrevSubTx
  * @property {number} creditFee
  * @property {string} hashSTPacket
- * @property {string} [vchSig]
+ * @property {string} [payloadSig]
  */
 function SubTxTransitionPayload() {
   AbstractPayload.call(this);
@@ -54335,8 +54335,8 @@ SubTxTransitionPayload.serializeJSONToBuffer = function (transitionPayload) {
     .writeUInt64LEBN(new BigNumber(transitionPayload.creditFee))
     .write(Buffer.from(transitionPayload.hashSTPacket, 'hex').reverse());
 
-  if (transitionPayload.vchSig) {
-    var signatureBuf = Buffer.from(transitionPayload.vchSig, 'hex');
+  if (transitionPayload.payloadSig) {
+    var signatureBuf = Buffer.from(transitionPayload.payloadSig, 'hex');
     payloadBufferWriter.writeVarintNum(signatureBuf.length);
     payloadBufferWriter.write(signatureBuf);
   } else {
@@ -54366,7 +54366,7 @@ SubTxTransitionPayload.fromBuffer = function (rawPayload) {
   }
 
   if (signatureSize > 0) {
-    payload.vchSig = payloadBufferReader.read(signatureSize).toString('hex');
+    payload.payloadSig = payloadBufferReader.read(signatureSize).toString('hex');
   }
 
   SubTxTransitionPayload.validatePayloadJSON(payload.toJSON());
@@ -54387,8 +54387,8 @@ SubTxTransitionPayload.fromJSON = function fromJSON(payloadJson) {
     .setRegTxId(payloadJson.regTxId)
     .setHashPrevSubTx(payloadJson.hashPrevSubTx);
 
-  if (payloadJson.vchSig) {
-    payload.vchSig = payloadJson.vchSig;
+  if (payloadJson.payloadSig) {
+    payload.payloadSig = payloadJson.payloadSig;
   }
 
   SubTxTransitionPayload.validatePayloadJSON(payload.toJSON());
@@ -54420,9 +54420,9 @@ SubTxTransitionPayload.validatePayloadJSON = function (blockchainUserPayload) {
   Preconditions.checkArgument(isHexString(blockchainUserPayload.hashSTPacket), 'expect hashSTPacket to be a hex string but got ' + typeof blockchainUserPayload.hashSTPacket);
   Preconditions.checkArgument(blockchainUserPayload.hashSTPacket.length === constants.SHA256_HASH_SIZE * 2, 'Invalid hashSTPacket size');
 
-  if (blockchainUserPayload.vchSig) {
-    Preconditions.checkArgument(isHexString(blockchainUserPayload.vchSig), 'expect vchSig to be a hex string but got ' + typeof blockchainUserPayload.vchSig);
-    Preconditions.checkArgument(blockchainUserPayload.vchSig.length === constants.COMPACT_SIGNATURE_SIZE * 2, 'Invalid vchSig size');
+  if (blockchainUserPayload.payloadSig) {
+    Preconditions.checkArgument(isHexString(blockchainUserPayload.payloadSig), 'expect payloadSig to be a hex string but got ' + typeof blockchainUserPayload.payloadSig);
+    Preconditions.checkArgument(blockchainUserPayload.payloadSig.length === constants.COMPACT_SIGNATURE_SIZE * 2, 'Invalid payloadSig size');
   }
 };
 
@@ -54478,7 +54478,7 @@ SubTxTransitionPayload.prototype.setCreditFee = function(creditFee) {
  * @return {TransitionPayloadJSON}
  */
 SubTxTransitionPayload.prototype.toJSON = function toJSON(options) {
-  var skipSignature = Boolean(options && options.skipSignature) || !Boolean(this.vchSig);
+  var skipSignature = Boolean(options && options.skipSignature) || !Boolean(this.payloadSig);
   var payloadJSON = {
     version: this.version,
     regTxId: this.regTxId,
@@ -54487,7 +54487,7 @@ SubTxTransitionPayload.prototype.toJSON = function toJSON(options) {
     hashSTPacket: this.hashSTPacket,
   };
   if (!skipSignature) {
-    payloadJSON.vchSig = this.vchSig
+    payloadJSON.payloadSig = this.payloadSig
   }
   SubTxTransitionPayload.validatePayloadJSON(payloadJSON);
   return payloadJSON;

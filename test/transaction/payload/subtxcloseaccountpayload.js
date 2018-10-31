@@ -25,7 +25,7 @@ var validSubTxCloseAccountPayloadJSONsigned = {
   hashPrevSubTx: prevSubTxHash,
   creditFee: 1000,
   payloadSigSize: 65,
-  vchSig: payloadSig,
+  payloadSig: payloadSig,
 };
 
 var validSubTxCloseAccountPayloadHexString = '0100e10e96741721c25567b454ac37bf80f3abaf929ed2d5ce36f15378e7e4f5b854a77cc2342ae42f71038e8d1772edff5a7efd620a1a9e1a24f1f8d6af5e2c74bfe80300000000000000';
@@ -122,7 +122,7 @@ describe('SubTxCloseAccountPayload', function () {
       expect(payload.hashPrevSubTx).to.be.equal(prevSubTxHash);
       expect(payload.creditFee).to.be.equal(1000);
       expect(payload.payloadSigSize).to.be.equal(65);
-      expect(payload.vchSig).to.be.equal(payloadSig);
+      expect(payload.payloadSig).to.be.equal(payloadSig);
     });
 
     it('Should throw in case if there is some unexpected information in raw payload', function() {
@@ -159,14 +159,14 @@ describe('SubTxCloseAccountPayload', function () {
         regTxHash: regTxHash,
         hashPrevSubTx: prevSubTxHash,
         creditFee: 1000,
-        vchSig: BufferUtil.emptyBuffer(CORRECT_SIGNATURE_SIZE).toString('hex')
+        payloadSig: BufferUtil.emptyBuffer(CORRECT_SIGNATURE_SIZE).toString('hex')
       };
       var payload = SubTxCloseAccountPayload.fromJSON(payloadJSON);
       expect(payload.version).to.be.equal(10);
       expect(payload.regTxHash).to.be.equal(payloadJSON.regTxHash);
       expect(payload.hashPrevSubTx).to.be.equal(payloadJSON.hashPrevSubTx);
       expect(payload.creditFee).to.be.equal(payloadJSON.creditFee);
-      expect(BufferUtil.equals(payload.vchSig, payloadJSON.vchSig)).to.be.true;
+      expect(BufferUtil.equals(payload.payloadSig, payloadJSON.payloadSig)).to.be.true;
     });
     it('Should throw an error if the data is incomplete', function () {
       var payloadWithoutRegTxHash = {
@@ -204,7 +204,7 @@ describe('SubTxCloseAccountPayload', function () {
         hashPrevSubTx: prevSubTxHash,
         creditFee: 1000,
         payloadSigSize: CORRECT_SIGNATURE_SIZE,
-        vchSig: BufferUtil.emptyBuffer(CORRECT_SIGNATURE_SIZE).toString('hex')
+        payloadSig: BufferUtil.emptyBuffer(CORRECT_SIGNATURE_SIZE).toString('hex')
       };
       var payloadWithIncorrectVersion = {
         version: '10',
@@ -212,7 +212,7 @@ describe('SubTxCloseAccountPayload', function () {
         hashPrevSubTx: prevSubTxHash,
         creditFee: 1000,
         payloadSigSize: CORRECT_SIGNATURE_SIZE,
-        vchSig: BufferUtil.emptyBuffer(CORRECT_SIGNATURE_SIZE).toString('hex')
+        payloadSig: BufferUtil.emptyBuffer(CORRECT_SIGNATURE_SIZE).toString('hex')
       };
       var payloadWithIncorrectSignature = {
         version: 10,
@@ -220,14 +220,14 @@ describe('SubTxCloseAccountPayload', function () {
         hashPrevSubTx: prevSubTxHash,
         creditFee: 1000,
         payloadSigSize: CORRECT_SIGNATURE_SIZE,
-        vchSig: 'signature'
+        payloadSig: 'signature'
       };
       var payloadWithIncorrectSignatureSize = {
         version: 10,
         regTxHash: regTxHash,
         hashPrevSubTx: prevSubTxHash,
         creditFee: 1000,
-        vchSig: BufferUtil.emptyBuffer(22).toString('hex')
+        payloadSig: BufferUtil.emptyBuffer(22).toString('hex')
       };
       expect(function () {
         SubTxCloseAccountPayload.fromJSON(payloadWithIncorrectRegTxHash);
@@ -257,7 +257,7 @@ describe('SubTxCloseAccountPayload', function () {
       expect(payload.hashPrevSubTx).to.be.equal(prevSubTxHash);
       expect(payload.creditFee).to.be.equal(1000);
       expect(payload.payloadSigSize).to.be.equal(65);
-      expect(payload.vchSig).to.be.equal(payloadSig);
+      expect(payload.payloadSig).to.be.equal(payloadSig);
     });
 
     after(function () {
@@ -298,9 +298,9 @@ describe('SubTxCloseAccountPayload', function () {
         .setPrevSubTxHash(prevSubTxHash)
         .setCreditFee(1000)
         .sign(privateKey);
-      expect(payload.vchSig).to.be.a.string;
-      expect(isHexString(payload.vchSig)).to.be.true;
-      expect(payload.vchSig.length).to.be.equal(CORRECT_SIGNATURE_SIZE * 2);
+      expect(payload.payloadSig).to.be.a.string;
+      expect(isHexString(payload.payloadSig)).to.be.true;
+      expect(payload.payloadSig.length).to.be.equal(CORRECT_SIGNATURE_SIZE * 2);
     });
     it('Should sign payload and return instance back if a private key is an instance of PrivateKey', function () {
       var payload = new SubTxCloseAccountPayload()
@@ -308,9 +308,9 @@ describe('SubTxCloseAccountPayload', function () {
         .setPrevSubTxHash(prevSubTxHash)
         .setCreditFee(1000)
         .sign(new PrivateKey(privateKey));
-      expect(payload.vchSig).to.be.a.string;
-      expect(isHexString(payload.vchSig)).to.be.true;
-      expect(payload.vchSig.length).to.be.equal(CORRECT_SIGNATURE_SIZE * 2);
+      expect(payload.payloadSig).to.be.a.string;
+      expect(isHexString(payload.payloadSig)).to.be.true;
+      expect(payload.payloadSig.length).to.be.equal(CORRECT_SIGNATURE_SIZE * 2);
     });
     it('Should throw when trying to sign incomplete data', function () {
       var payload = new SubTxCloseAccountPayload()
@@ -395,7 +395,7 @@ describe('SubTxCloseAccountPayload', function () {
       expect(payloadJSON.hashPrevSubTx).to.be.equal(prevSubTxHash);
       expect(payloadJSON.creditFee).to.be.equal(1000);
       expect(payloadJSON.payloadSigSize).to.be.equal(65);
-      expect(payloadJSON.vchSig).to.be.equal(payloadSig);
+      expect(payloadJSON.payloadSig).to.be.equal(payloadSig);
 
     });
     it('Should call #validate', function () {
@@ -455,7 +455,7 @@ describe('SubTxCloseAccountPayload', function () {
       expect(restoredPayload.hashPrevSubTx).to.be.equal(prevSubTxHash);
       expect(restoredPayload.creditFee).to.be.equal(1000);
       expect(restoredPayload.payloadSigSize).to.be.equal(65);
-      expect(restoredPayload.vchSig).to.be.equal(payloadSig);
+      expect(restoredPayload.payloadSig).to.be.equal(payloadSig);
     });
     it('Should call #validate', function () {
       var payload = SubTxCloseAccountPayload.fromJSON(validSubTxCloseAccountPayloadJSONsigned);
