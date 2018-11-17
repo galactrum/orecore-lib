@@ -11,8 +11,8 @@ var PrivateKey = bitcore.PrivateKey;
 var Networks = bitcore.Networks;
 var Base58Check = bitcore.encoding.Base58Check;
 
-var validbase58 = require('./data/bitcoind/base58_keys_valid.json');
-var invalidbase58 = require('./data/bitcoind/base58_keys_invalid.json');
+var validbase58 = require('./data/galactrumd/base58_keys_valid.json');
+var invalidbase58 = require('./data/galactrumd/base58_keys_invalid.json');
 
 describe('PrivateKey', function() {
   var hex = '96c132224121b509b7d0a16245e957d9192609c5637c6228311287b1be21627a';
@@ -88,7 +88,7 @@ describe('PrivateKey', function() {
     should.exist(a.bn);
   });
 
-  describe('bitcoind compliance', function() {
+  describe('galactrumd compliance', function() {
     validbase58.map(function(d){
       if (d[2].isPrivkey) {
         it('should instantiate WIF private key ' + d[0] + ' with correct properties', function() {
@@ -256,7 +256,7 @@ describe('PrivateKey', function() {
     it('should output this known livenet address correctly', function() {
       var privkey = PrivateKey.fromWIF('XHWwKGqugqSRkcpuiWyDJXSHhjWGCidZ5HLwf9ScMLaEeDTRHepq');
       var address = privkey.toAddress();
-      address.toString().should.equal('XjnkiGYQkC3bbAzvDjP7jkNouHCHNRr3ug');
+      address.toString().should.equal('GSwqJ9DTmLSJWhhdHnj1Jz2uz7QSP8eXWh');
     });
 
     it('should output this known testnet address correctly', function() {
@@ -446,7 +446,7 @@ describe('PrivateKey', function() {
 
   it('creates an address as expected from WIF, livenet', function() {
     var privkey = new PrivateKey('7qkwwtzK51WnYkQSGzikZ2M7frFEf9N5J3GMtJZrAavjiLSqxag');
-    privkey.publicKey.toAddress().toString().should.equal('XcmSnAL9AUvMXQe2W6BXVzXidR5Qua5Kjt');
+    privkey.publicKey.toAddress().toString().should.equal('GKvXN31CBdK4SwLja9XR5EBpiFHZtsGBXu');
   });
 
   it('creates an address as expected from WIF, testnet', function() {
