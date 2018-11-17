@@ -8,8 +8,8 @@ var Signature = bitcore.crypto.Signature;
 var JSUtil = bitcore.util.js;
 var Interpreter = bitcore.Script.Interpreter;
 
-var sig_canonical = require('../data/bitcoind/sig_canonical');
-var sig_noncanonical = require('../data/bitcoind/sig_noncanonical');
+var sig_canonical = require('../data/galactrumd/sig_canonical');
+var sig_noncanonical = require('../data/galactrumd/sig_noncanonical');
 
 describe('Signature', function() {
 
