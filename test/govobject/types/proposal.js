@@ -24,10 +24,10 @@ describe('Proposal', function() {
     name: "TestProposal",
     start_epoch: startDate,
     end_epoch: endDate,
-    payment_address: 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh',
+    payment_address: 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp',
     payment_amount: 10,
     type: 1,
-    url: "http://www.dash.org"
+    url: "https://galactrum.org"
   };
   it('should create new proposal', function() {
     var proposal = new Proposal();
@@ -35,11 +35,11 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = endDate;
     proposal.name = 'TestProposal';
-    proposal.payment_address = 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh';
+    proposal.payment_address = 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp';
     proposal.payment_amount = 10;
     proposal.start_epoch = startDate;
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
 
     proposal.serialize().should.equal(expectedHex);
   });
@@ -50,11 +50,11 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = 1477872000;
     proposal.name = 'TestProposal';
-    proposal.payment_address = 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh';
+    proposal.payment_address = 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp';
     proposal.payment_amount = 10;
     proposal.start_epoch = 'not a date'; // invalid date
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
 
     expect(function() {
       return proposal.serialize();
@@ -67,11 +67,11 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = 'not a date';
     proposal.name = 'TestProposal';
-    proposal.payment_address = 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh';
+    proposal.payment_address = 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp';
     proposal.payment_amount = 10;
     proposal.start_epoch = 1477872000;
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
     var expectedErr = new errors.GovObject.Proposal.invalidDate();
     expect(proposal.getSerializationError().message).to.be.equal(expectedErr.message);
 
@@ -83,11 +83,11 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = 1472688000;
     proposal.name = 'TestProposal';
-    proposal.payment_address = 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh';
+    proposal.payment_address = 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp';
     proposal.payment_amount = 10;
     proposal.start_epoch = 1477872000;
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
 
     expect(function() {
       return proposal.serialize();
@@ -104,11 +104,11 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = end_epoch;
     proposal.name = 'TestProposal';
-    proposal.payment_address = 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh';
+    proposal.payment_address = 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp';
     proposal.payment_amount = 10;
     proposal.start_epoch = start_epoch;
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
 
     expect(function() {
       return proposal.serialize();
@@ -122,11 +122,11 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = endDate;
     proposal.name = 'TestProposal';
-    proposal.payment_address = 'XmPtF6UoguyK'; // payment address must be > 26 characters
+    proposal.payment_address = 'yjL98aaV2PV'; // payment address must be > 26 characters
     proposal.payment_amount = 10;
     proposal.start_epoch = startDate;
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
 
     expect(function() {
       return proposal.serialize();
@@ -144,17 +144,17 @@ describe('Proposal', function() {
     proposal.payment_amount = 10;
     proposal.start_epoch = startDate;
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
 
     var proposal2 = new Proposal();
     proposal2.network = 'livenet';
     proposal2.end_epoch = endDate;
-    proposal2.name = 'Proposal-36-DashATM';
+    proposal2.name = 'Proposal-36-GalactrumATM';
     proposal2.payment_address = '7Z7X2jaqMtzsr2oHpSn89cNaEC16DYByz3';
     proposal2.payment_amount = 1625.487;
     proposal2.start_epoch = startDate;
     proposal2.type = 1;
-    proposal2.url = "https://www.dashcentral.org/p/Proposal-36-DashATM";
+    proposal2.url = "https://www.galactrum.org";
 
     expect(function() {
       return proposal.serialize();
@@ -171,11 +171,11 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = endDate;
     proposal.name = 'TestProposal';
-    proposal.payment_address = 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh';
+    proposal.payment_address = 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp';
     proposal.payment_amount = '';
     proposal.start_epoch = startDate;
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
 
     expect(function() {
       return proposal.serialize();
@@ -189,7 +189,7 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = endDate;
     proposal.name = 'TestProposal';
-    proposal.payment_address = 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh';
+    proposal.payment_address = 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp';
     proposal.payment_amount = 10;
     proposal.start_epoch = startDate;
     proposal.type = 1;
@@ -207,11 +207,11 @@ describe('Proposal', function() {
     proposal.network = 'testnet';
     proposal.end_epoch = endDate;
     proposal.name = 'Test Proposal';
-    proposal.payment_address = 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh';
+    proposal.payment_address = 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp';
     proposal.payment_amount = 10;
     proposal.start_epoch = startDate;
     proposal.type = 1;
-    proposal.url = "http://www.dash.org";
+    proposal.url = "https://galactrum.org";
 
     expect(function() {
       return proposal.serialize();
@@ -223,10 +223,10 @@ describe('Proposal', function() {
       name: "TestProposal",
       start_epoch: startDate,
       end_epoch: endDate,
-      payment_address: 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh',
+      payment_address: 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp',
       payment_amount: 10,
       type: 1,
-      url: "http://www.dash.org"
+      url: "https://galactrum.org"
     };
     var proposal = new Proposal();
     proposal = proposal.fromObject(jsonProposal);
@@ -240,10 +240,10 @@ describe('Proposal', function() {
       name: "TestProposal",
       start_epoch: startDate,
       end_epoch: endDate,
-      payment_address: 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh',
+      payment_address: 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp',
       payment_amount: 10,
       type: 1,
-      url: "http://www.dash.org"
+      url: "https://galactrum.org"
     };
 
     var proposal = new Proposal();
@@ -277,10 +277,10 @@ describe('Proposal', function() {
     var jsonProposal = {
       start_epoch: startDate,
       end_epoch: endDate,
-      payment_address: 'yXGeNPQXYFXhLAN1ZKrAjxzzBnZ2JZNKnh',
+      payment_address: 'yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp',
       payment_amount: 10,
       type: 1,
-      url: "http://www.dash.org"
+      url: "https://galactrum.org"
     };
     var stringifiedJSON = JSON.stringify(jsonProposal);
     var proposal = new Proposal();
@@ -520,28 +520,28 @@ describe('Proposal', function() {
   });
   it('should parse a serialised datahex proposal', function(){
 
-    var datahex1 = '5b5b2270726f706f73616c222c7b22656e645f65706f6368223a313531393834383631392c226e616d65223a226768696a6b6c6d6e6f707172737475767778797a3031323334353637383931353139303937393437222c227061796d656e745f61646472657373223a2279696b354841675641676a48316f5a4b6a63446676636632326277424e6253597a42222c227061796d656e745f616d6f756e74223a31302c2273746172745f65706f6368223a313531393039373934372c2274797065223a312c2275726c223a2268747470733a2f2f7777772e6461736863656e7472616c2e6f72672f702f746573745f70726f706f73616c5f31353139303937393437227d5d5d'
-    var datahex2 = '7b22656e645f65706f6368223a20313532323934373237392c20226e616d65223a2022746573742d6e617465222c20227061796d656e745f61646472657373223a20227953614559626252714e6a34504b626342397577364d50696448776f42426e687461222c20227061796d656e745f616d6f756e74223a2035352c202273746172745f65706f6368223a20313531373739393134342c202274797065223a20312c202275726c223a202268747470733a2f2f697066732e696f2f697066732f516d59374b456d4a4b707837624e4451325766444a70327a647376583141545a4b57643441584168444c4361424d227d';
-    var datahex2_array = '5b5b2270726f706f73616c222c7b22656e645f65706f6368223a313532323934373237392c226e616d65223a22746573742d6e617465222c227061796d656e745f61646472657373223a227953614559626252714e6a34504b626342397577364d50696448776f42426e687461222c227061796d656e745f616d6f756e74223a35352c2273746172745f65706f6368223a313531373739393134342c2274797065223a312c2275726c223a2268747470733a2f2f697066732e696f2f697066732f516d59374b456d4a4b707837624e4451325766444a70327a647376583141545a4b57643441584168444c4361424d227d5d5d';
+    var datahex1 = '5b5b2270726f706f73616c222c7b22656e645f65706f6368223a313531393834383631392c226e616d65223a226768696a6b6c6d6e6f707172737475767778797a3031323334353637383931353139303937393437222c227061796d656e745f61646472657373223a22796a4c3938616156325056587564436679696a3137486f66716d6833796e70654670222c227061796d656e745f616d6f756e74223a31302c2273746172745f65706f6368223a313531393039373934372c2274797065223a312c2275726c223a2268747470733a2f2f7777772e67616c61637472756d2e6f7267227d5d5d'
+    var datahex2 = '7b22656e645f65706f6368223a20313532323934373237392c20226e616d65223a2022746573742d6e617465222c20227061796d656e745f61646472657373223a2022796a4c3938616156325056587564436679696a3137486f66716d6833796e70654670222c20227061796d656e745f616d6f756e74223a2035352c202273746172745f65706f6368223a20313531373739393134342c202274797065223a20312c202275726c223a202268747470733a2f2f7777772e67616c61637472756d2e6f7267227d';
+    var datahex2_array = '5b5b2270726f706f73616c222c7b22656e645f65706f6368223a313532323934373237392c226e616d65223a22746573742d6e617465222c227061796d656e745f61646472657373223a22796a4c3938616156325056587564436679696a3137486f66716d6833796e70654670222c227061796d656e745f616d6f756e74223a35352c2273746172745f65706f6368223a313531373739393134342c2274797065223a312c2275726c223a2268747470733a2f2f7777772e67616c61637472756d2e6f7267227d5d5d';
 
     var proposal1 = new Proposal(datahex1);
     expect(proposal1.toString()).to.equal(datahex1);
     expect(proposal1.type).to.equal(1);
     expect(proposal1.end_epoch).to.equal(1519848619);
-    expect(proposal1.payment_address).to.equal('yik5HAgVAgjH1oZKjcDfvcf22bwBNbSYzB');
-    expect(proposal1.url).to.equal('https://www.dashcentral.org/p/test_proposal_1519097947');
+    expect(proposal1.payment_address).to.equal('yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp');
+    expect(proposal1.url).to.equal('https://www.galactrum.org');
 
     var proposal2 = new Proposal(datahex2);
     //We expect to be a different datahex2 as input is an object, and output will be an array (default).
     expect(proposal2.toString()).to.equal(datahex2_array);
     expect(proposal2.type).to.equal(1);
     expect(proposal2.end_epoch).to.equal(1522947279);
-    expect(proposal2.payment_address).to.equal('ySaEYbbRqNj4PKbcB9uw6MPidHwoBBnhta');
-    expect(proposal2.url).to.equal('https://ipfs.io/ipfs/QmY7KEmJKpx7bNDQ2WfDJp2zdsvX1ATZKWd4AXAhDLCaBM');
+    expect(proposal2.payment_address).to.equal('yjL98aaV2PVXudCfyij17Hofqmh3ynpeFp');
+    expect(proposal2.url).to.equal('https://www.galactrum.org');
   })
   it('should handle a trigger', function () {
     //Todo : handle proposal and trigger object differently
-    var triggerDatahex1 = '5b5b2274726967676572222c207b226576656e745f626c6f636b5f686569676874223a2037393834382c20227061796d656e745f616464726573736573223a202279696b354841675641676a48316f5a4b6a63446676636632326277424e6253597a42222c20227061796d656e745f616d6f756e7473223a202231302e3030303030303030222c202270726f706f73616c5f686173686573223a202232306536396233356331353137633564373361613431623164333462353961626266333662333330626166373735663631323832643233313662666438366562222c202274797065223a20327d5d5d';
+    var triggerDatahex1 = '5b5b2274726967676572222c207b226576656e745f626c6f636b5f686569676874223a2037393834382c20227061796d656e745f616464726573736573223a2022796a4c3938616156325056587564436679696a3137486f66716d6833796e70654670222c20227061796d656e745f616d6f756e7473223a202231302e3030303030303030222c202270726f706f73616c5f686173686573223a202232306536396233356331353137633564373361613431623164333462353961626266333662333330626166373735663631323832643233313662666438366562222c202274797065223a20327d5d5d';
 
     var trigger = new Proposal(triggerDatahex1);
     //May be apply this test in Govobject directly and then apply the use of every new Proposal as new Govobject
@@ -550,4 +550,4 @@ describe('Proposal', function() {
 
   })
 });
-var expectedHex = '5b5b2270726f706f73616c222c7b22656e645f65706f6368223a313736303035343430302c226e616d65223a225465737450726f706f73616c222c227061796d656e745f61646472657373223a22795847654e505158594658684c414e315a4b72416a787a7a426e5a324a5a4e4b6e68222c227061796d656e745f616d6f756e74223a31302c2273746172745f65706f6368223a313434343433353230302c2274797065223a312c2275726c223a22687474703a2f2f7777772e646173682e6f7267227d5d5d';
+var expectedHex = '5b5b2270726f706f73616c222c7b22656e645f65706f6368223a313736303035343430302c226e616d65223a225465737450726f706f73616c222c227061796d656e745f61646472657373223a22796a4c3938616156325056587564436679696a3137486f66716d6833796e70654670222c227061796d656e745f616d6f756e74223a31302c2273746172745f65706f6368223a313434343433353230302c2274797065223a312c2275726c223a2268747470733a2f2f67616c61637472756d2e6f7267227d5d5d';
