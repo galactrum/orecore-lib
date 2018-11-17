@@ -335,9 +335,9 @@ describe('PublicKey', function() {
   describe('#toAddress', function() {
 
     it('should output this known mainnet address correctly', function() {
-      var pk = new PublicKey('03c87bd0e162f26969da8509cafcb7b8c8d202af30b928c582e263dd13ee9a9781');
+      var pk = new PublicKey('0292db109ca548127cbd710ed7612f373426e33d6920626e036dd382e4642f1a77');
       var address = pk.toAddress('livenet');
-      address.toString().should.equal('XjnkiGYQkC3bbAzvDjP7jkNouHCHNRr3ug');
+      address.toString().should.equal('GNp6xWV5F9JVLabd7dYQn548bXZtvUjoyL');
     });
 
     it('should output this known testnet address correctly', function() {
@@ -353,10 +353,10 @@ describe('PublicKey', function() {
     // wif private key, address
     // see: https://github.com/dashpay/dash/blob/master/src/test/key_tests.cpp#L20
     var data = [
-      ['7qh6LYnLN2w2ntz2wwUhRUEgkQ2j8XB16FGw77ZRDZmC29bn7cD', 'Xywgfc872nn5CKtpATCoAjZCc4v96pJczy'],
-      ['7rve4MxeWFQHGbSYH6J2yaaZd3MBUqoDEwN6ZAZ6ZHmhTT4r3hW', 'XpmouUj9KKJ99ZuU331ZS1KqsboeFnLGgK'],
-      ['XBuxZHH6TqXUuaSjbVTFR1DQSYecxCB9QA1Koyx5tTc3ddhqEnhm', 'XxV9h4Xmv6Pup8tVAQmH97K6grzvDwMG9F'],
-      ['XHMkZqWcY6Zkoq1j42NBijD8z5N5FtNy2Wx7WyAfXX2HZgxry8cr', 'Xn7ZrYdExuk79Dm7CJCw7sfUWi2qWJSbRy']
+      ['XEGeKqkjQCmisAaCC3swsewZ5oaRptX4jPigE8CvvePAfVrYhYw4', 'GWS9X5udrLGcWyq8SmJoqR7MPwiKA6jkUW'],
+      ['XFSckkGB6pPrjXb4erT6shgKj8RHVTTRzGjViLVzKM4WgtSm3ABY', 'GYfL3EfjUXKNQrXesCMSDZ2hCmexkD1XRK'],
+      ['XEHrozgMRAKdPef32XabuipnAURTuF3S3mbxEAQELr6GTeX557ki', 'GcWh3Gp32V2H2Eb743g3KNndxyuNxuG9dQ'],
+      ['XEdDxcX5u9SV8HKBTuACLh2DgJHitZUpAAGQLpxzEuGrNcd7zvDT', 'GNp6xWV5F9JVLabd7dYQn548bXZtvUjoyL']
     ];
 
     data.forEach(function(d){
