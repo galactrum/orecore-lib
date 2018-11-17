@@ -588,7 +588,7 @@ describe('Transaction', function() {
             .change(changeAddress);
         }, 'disableIsFullySigned', errors.Transaction.MissingSignatures
       ));
-      it('can skip the check that avoids spending more bitcoins than the inputs for a transaction', buildSkipTest(
+      it('can skip the check that avoids spending more Galactrum than the inputs for a transaction', buildSkipTest(
         function(transaction) {
           return transaction
             .to(toAddress, 10000000000000)
