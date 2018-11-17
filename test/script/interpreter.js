@@ -11,12 +11,12 @@ var BufferWriter = bitcore.encoding.BufferWriter;
 var Opcode = bitcore.Opcode;
 var _ = require('lodash');
 
-var script_valid = require('../data/bitcoind/script_valid');
-var script_invalid = require('../data/bitcoind/script_invalid');
-var tx_valid = require('../data/bitcoind/tx_valid');
-var tx_invalid = require('../data/bitcoind/tx_invalid');
+var script_valid = require('../data/galactrumd/script_valid');
+var script_invalid = require('../data/galactrumd/script_invalid');
+var tx_valid = require('../data/galactrumd/tx_valid');
+var tx_invalid = require('../data/galactrumd/tx_invalid');
 
-//the script string format used in bitcoind data tests
+//the script string format used in galactrum data tests
 Script.fromBitcoindString = function(str) {
   var bw = new BufferWriter();
   var tokens = str.split(' ');
@@ -230,7 +230,7 @@ describe('Interpreter', function() {
     var verified = interp.verify(scriptSig, scriptPubkey, spendtx, 0, flags);
     verified.should.equal(expected);
   };
-  describe('bitcoind script evaluation fixtures', function() {
+  describe('galactrum script evaluation fixtures', function() {
     var testAllFixtures = function(set, expected) {
       var c = 0;
       set.forEach(function(vector) {
@@ -252,7 +252,7 @@ describe('Interpreter', function() {
     testAllFixtures(script_invalid, false);
 
   });
-  describe('bitcoind transaction evaluation fixtures', function() {
+  describe('galactrumd transaction evaluation fixtures', function() {
     var test_txs = function(set, expected) {
       var c = 0;
       set.forEach(function(vector) {
