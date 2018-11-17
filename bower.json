@@ -1,16 +1,17 @@
 {
-  "name": "bitcore-lib-dash",
-  "main": "./bitcore-lib-dash.min.js",
-  "version": "0.15.3",
-  "homepage": "https://github.com/dashevo/bitcore-lib-dash",
+  "name": "galactrum-lib",
+  "main": "./galactrum-lib.min.js",
+  "version": "0.15.7",
+  "homepage": "https://github.com/galactrum/galactrum.js",
   "authors": [
-    "Dash", "BitPay, Inc."
+    "Galactrum", "Dash", "BitPay, Inc."
   ],
-  "description": "A pure, powerful core for your Dash project.",
+  "description": "A pure, powerful core for your Galactrum project.",
   "moduleType": [
     "globals"
   ],
   "keywords": [
+    "galactrum",
     "dash",
     "bitcoin",
     "bitcore",

@@ -1,5 +1,5 @@
 'use strict';
-var path = require('path')
+var path = require('path');
 
 var src = './index.js',
     tests = './test.spec.js';
@@ -17,9 +17,9 @@ var karmaConfig = {
     },
     module: {
       rules: [
-        { test: /\.json$/, use: "json-loader" },
-        { test: /\.dat$/, use: "raw-loader" },
-        { enforce:'post', loader: "transform-loader?brfs" },
+        { test: /\.json$/, use: 'json-loader' },
+        { test: /\.dat$/, use: 'raw-loader' },
+        { enforce:'post', loader: 'transform-loader?brfs' },
       ],
     },
   },

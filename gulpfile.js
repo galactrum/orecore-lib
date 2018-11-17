@@ -1,5 +1,5 @@
 
 
-var bitcoreTasks = require('bitcore-build-dash');
+var bitcoreTasks = require('bitcore-build-galactrum');
 
-bitcoreTasks('lib-dash');
+bitcoreTasks('lib-galactrum');

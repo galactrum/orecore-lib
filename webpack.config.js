@@ -1,5 +1,5 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const commonJSConfig = {
   entry: ['./index.js'],
@@ -12,21 +12,21 @@ const commonJSConfig = {
 const rawConfig = Object.assign({}, commonJSConfig, {
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'dashcore-lib.js',
-    library: 'dashcore',
+    filename: 'galactrum-lib.js',
+    library: 'galactrum.js',
     libraryTarget: 'umd',
   }
-})
+});
 const uglifiedConfig = Object.assign({}, commonJSConfig, {
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'dashcore-lib.min.js',
-    library: 'dashcore',
+    filename: 'galactrum-lib.min.js',
+    library: 'galactrum.js',
     libraryTarget: 'umd',
   },
   plugins: [
     new UglifyJsPlugin()
   ]
-})
+});
 
 module.exports = [rawConfig, uglifiedConfig];

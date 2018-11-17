@@ -1,12 +1,12 @@
 {
-  "name": "@dashevo/dashcore-lib",
-  "version": "0.15.6",
-  "description": "A pure and powerful JavaScript Dash library.",
+  "name": "@galactrum/galactrum.js",
+  "version": "0.15.7",
+  "description": "A pure and powerful JavaScript Galactrum library.",
   "author": "BitPay <dev@bitpay.com>",
   "main": "index.js",
   "scripts": {
     "lint": "jshint . || true",
-    "test": "npm run build && npm run test:node && npm run test:browser && npm run lint",
+    "test": "npm run build && npm run test:node && npm run lint",
     "test:node": "mocha --no-timeouts --recursive",
     "test:browser": "karma start ./karma.conf.js --single-run",
     "coverage": "nyc mocha --recursive",
@@ -68,10 +68,13 @@
     {
       "name": "Alex Werner",
       "email": "alex@werner.fr"
+    },
+    {
+      "name": "GAB5TER",
+      "email": "GAB5TER@protonmail.com"
     }
   ],
   "keywords": [
-    "dash",
     "transaction",
     "address",
     "p2p",
@@ -85,16 +88,16 @@
     "bip69",
     "bip70",
     "multisig",
-    "dashcore"
+    "galactrum"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/dashevo/dashcore-lib.git"
+    "url": "https://github.com/galactrum/galactrum.js.git"
   },
   "bugs": {
-    "url": "https://github.com/dashevo/dashcore-lib/issues"
+    "url": "https://github.com/galactrum/galactrum.js/issues"
   },
-  "homepage": "https://github.com/dashevo/dashcore-lib",
+  "homepage": "https://github.com/galactrum/galactrum.js",
   "browser": {
     "request": "browser-request"
   },
