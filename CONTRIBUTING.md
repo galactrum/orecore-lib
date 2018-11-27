@@ -1,7 +1,7 @@
 Contributing to Galactrum
 =======
 
-We're working hard to make *galactrum.js* the most powerful JavaScript library for working with Galactrum. Our goal is to have *galactrum.js* be a library that can be used by anyone interested in Galactrum, and to level expertise differences with great design and documentation.
+We're working hard to make *galactrum-lib* the most powerful JavaScript library for working with Galactrum. Our goal is to have *galactrum-lib* be a library that can be used by anyone interested in Galactrum, and to level expertise differences with great design and documentation.
 
 ## Community
 

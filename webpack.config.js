@@ -13,7 +13,7 @@ const rawConfig = Object.assign({}, commonJSConfig, {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'galactrum-lib.js',
-    library: 'galactrum.js',
+    library: 'galactrum-lib',
     libraryTarget: 'umd',
   }
 });
@@ -21,7 +21,7 @@ const uglifiedConfig = Object.assign({}, commonJSConfig, {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'galactrum-lib.min.js',
-    library: 'galactrum.js',
+    library: 'galactrum-lib',
     libraryTarget: 'umd',
   },
   plugins: [

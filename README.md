@@ -48,11 +48,11 @@ Some examples can be found [here](docs/examples.md), below is a list of direct l
 
 ## Contributing
 
-Please send pull requests for bug fixes, code optimization, and ideas for improvement. For more information on how to contribute, please refer to our [CONTRIBUTING](https://github.com/galactrum/galactrum.js/blob/master/CONTRIBUTING.md) file.
+Please send pull requests for bug fixes, code optimization, and ideas for improvement. For more information on how to contribute, please refer to our [CONTRIBUTING](https://github.com/GAB5TER/galactrum-lib/blob/master/CONTRIBUTING.md) file.
 
 ## Building the Browser Bundle
 
-To build a galactrum.js full bundle for the browser:
+To build a galactrum-lib full bundle for the browser:
 
 ```sh
 npm run build
@@ -74,8 +74,8 @@ This will generate files named `galactrum-lib.js` and `galactrum-lib.min.js` in 
 ## Development & Tests
 
 ```sh
-git clone https://github.com/galactrum/galactrum.js
-cd galactrum.js
+git clone https://github.com/GAB5TER/galactrum-lib
+cd galactrum-lib
 npm install
 ```
 
