@@ -1,5 +1,5 @@
 {
-  "name": "@galactrum/galactrum-lib",
+  "name": "galactrum-lib",
   "version": "0.15.7",
   "description": "A pure and powerful JavaScript Galactrum library.",
   "author": "BitPay <dev@bitpay.com>",
