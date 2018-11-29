@@ -1,5 +1,5 @@
 # Transaction
-Galactrum provides a very simple API for creating transactions. We expect this API to be accessible for developers without knowing the working internals of Galactrum in deep detail. What follows is a small introduction to transactions with some basic knowledge required to use this API.
+Orecore provides a very simple API for creating transactions. We expect this API to be accessible for developers without knowing the working internals of Galactrum in deep detail. What follows is a small introduction to transactions with some basic knowledge required to use this API.
 
 A Transaction contains a set of inputs and a set of outputs. Each input contains a reference to another transaction's output, and a signature that allows the value referenced in that output to be used in this transaction.
 
@@ -77,7 +77,7 @@ transaction.applySignature(receivedSig);
 ## Adding inputs
 Transaction inputs are instances of either [Input](lib/transaction/input) or its subclasses. `Input` has some abstract methods, as there is no actual concept of a "signed input" in the Galactrum scripting system (just valid signatures for <tt>OP_CHECKSIG</tt> and similar opcodes). They are stored in the `input` property of `Transaction` instances.
 
-Galactrum contains two implementations of `Input`, one for spending _Pay to Public Key Hash_ outputs (called `PublicKeyHashInput`) and another to spend _Pay to Script Hash_ outputs for which the redeem script is a Multisig script (called `MultisigScriptHashInput`).
+Orecore contains two implementations of `Input`, one for spending _Pay to Public Key Hash_ outputs (called `PublicKeyHashInput`) and another to spend _Pay to Script Hash_ outputs for which the redeem script is a Multisig script (called `MultisigScriptHashInput`).
 
 All inputs have the following five properties:
 - `prevTxId`: a `Buffer` with the id of the transaction with the output this input is spending
@@ -146,7 +146,7 @@ When serializing, the Galactrum library performs a series of checks. These can b
 These are the current default values in the Galactrum library involved on these checks:
 - `Transaction.FEE_PER_KB`: `10000` (crags per kilobyte)
 - `Transaction.FEE_SECURITY_MARGIN`: `15`
-- `Transaction.DUST_AMOUNT`: `546` (crag)
+- `Transaction.DUST_AMOUNT`: `546` (crags)
 
 ## Fee calculation
 When the sum of the outputs' value doesn't add up to the sum of the inputs' value, the difference is given to the miner of the block that includes this transaction as a "mining fee".
@@ -163,7 +163,7 @@ Internally, a `_changeIndex` property stores the index of the change output (so 
 ## Time-Locking transaction
 All Galactrum transactions contain a locktime field. The locktime indicates the earliest time a transaction can be added to the blockchain. Locktime allows signers to create time-locked transactions which will only become valid in the future, giving the signers a chance to change their minds. Locktime can be set in the form of a Glactrum block height (the transaction can only be included in a block with a higher height than specified) or a Linux timestamp (transaction can only be confirmed after that time). For more information see [Bitcoin's development guide section on locktime](https://bitcoin.org/en/developer-guide#locktime-and-sequence-number).
 
-In Galactrum, you can set a `Transaction`'s locktime by using the methods `Transaction#lockUntilDate` and `Transaction#lockUntilBlockHeight`. You can also get a friendly version of the locktime field via `Transaction#getLockTime`;
+In Orecore, you can set a `Transaction`'s locktime by using the methods `Transaction#lockUntilDate` and `Transaction#lockUntilBlockHeight`. You can also get a friendly version of the locktime field via `Transaction#getLockTime`;
 
 For example:
 

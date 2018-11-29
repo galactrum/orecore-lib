@@ -10,7 +10,7 @@ galactrum:GWS9X5udrLGcWyq8SmJoqR7MPwiKA6jkUW?amount=1.2&message=Payment&label=Sa
 ```
 
 ## URI Validation
-The main use that we expect you'll have for the `URI` class in Galactrum is validating and parsing Galactrum URIs. A `URI` instance exposes the address as a Galactrum `Address` object and the amount in satoshis, if present.
+The main use that we expect you'll have for the `URI` class in Orecore is validating and parsing Galactrum URIs. A `URI` instance exposes the address as a Orecore `Address` object and the amount in satoshis, if present.
 
 The code for validating URIs looks like this:
 

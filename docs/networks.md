@@ -1,5 +1,5 @@
 # Networks
-Galactrum provides support for the main Galactrum network as well as for `testnet`, the current test blockchain. We encourage the use of `Networks.livenet` and `Networks.testnet` as constants. Note that the library sometimes may check for equality against this object. Please avoid creating a deep copy of this object.
+Orecore provides support for the main Galactrum network as well as for `testnet`, the current test blockchain. We encourage the use of `Networks.livenet` and `Networks.testnet` as constants. Note that the library sometimes may check for equality against this object. Please avoid creating a deep copy of this object.
 
 The `Network` namespace has a function, `get(...)` that returns an instance of a `Network` or `undefined`. The only argument to this function is some kind of identifier of the network: either its name, a reference to a Network object, or a number used as a magic constant to identify the network (for example, the value `0x26` that gives Galactrum addresses the distinctive `'G'` at its beginning on livenet, is a `0x8c` for testnet).
 
@@ -9,14 +9,14 @@ The regtest network is useful for development as it's possible to programmatical
 
 ```js
 // Standard testnet
-> galactrum.Networks.testnet.networkMagic;
+> orecore.Networks.testnet.networkMagic;
 <Buffer b1 de d0 ab>
 ```
 
 ```js
 // Enabling testnet to use the regtest port and magicNumber
-> galactrum.Networks.enableRegtest();
-> galactrum.Networks.testnet.networkMagic;
+> orecore.Networks.enableRegtest();
+> orecore.Networks.testnet.networkMagic;
 <Buffer fc c1 b7 dc>
 ```
 

@@ -1,4 +1,4 @@
-Galactrum Library
+Orecore Library
 ================
 
 
@@ -65,7 +65,7 @@ This will generate files named `galactrum-lib.js` and `galactrum-lib.min.js` in 
 ```
 <script src='./dist/galactrum-lib.min.js' type="text/javascript"></script>
 <script>
-  const PrivateKey = galactrum.PrivateKey;
+  const PrivateKey = orecore.PrivateKey;
   const privateKey = new PrivateKey();
   const address = privateKey.toAddress().toString();
 </script>
