@@ -6,7 +6,7 @@ var bitcore = module.exports;
 bitcore.version = 'v' + require('./package.json').version;
 bitcore.versionGuard = function(version) {
   if (version !== undefined) {
-    var message = 'More than one instance of galactrum-lib found. ' +
+    var message = 'More than one instance of orecore-lib found. ' +
       'Please make sure that you are not mixing instances of classes of the different versions of galactrum.';
     console.warn(message);
   }

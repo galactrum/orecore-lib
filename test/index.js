@@ -13,6 +13,6 @@ describe('#versionGuard', function() {
       sinon.stub(console, 'warn');
       bitcore.versionGuard('version');
       should.equal(console.warn.calledOnce,true);
-      should.equal(console.warn.calledWith('More than one instance of galactrum-lib found. Please make sure that you are not mixing instances of classes of the different versions of galactrum.'),true)
+      should.equal(console.warn.calledWith('More than one instance of orecore-lib found. Please make sure that you are not mixing instances of classes of the different versions of galactrum.'),true)
   });
 });

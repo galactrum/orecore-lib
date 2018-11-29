@@ -1,8 +1,8 @@
 {
-  "name": "galactrum-lib",
-  "main": "./galactrum-lib.min.js",
+  "name": "orecore-lib",
+  "main": "./orecore-lib.min.js",
   "version": "0.15.7",
-  "homepage": "https://github.com/GAB5TER/galactrum-lib",
+  "homepage": "https://github.com/GAB5TER/orecore-lib",
   "authors": [
     "Galactrum", "Dash", "BitPay, Inc."
   ],

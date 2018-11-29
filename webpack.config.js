@@ -12,16 +12,16 @@ const commonJSConfig = {
 const rawConfig = Object.assign({}, commonJSConfig, {
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'galactrum-lib.js',
-    library: 'galactrum-lib',
+    filename: 'orecore-lib.js',
+    library: 'orecore-lib',
     libraryTarget: 'umd',
   }
 });
 const uglifiedConfig = Object.assign({}, commonJSConfig, {
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'galactrum-lib.min.js',
-    library: 'galactrum-lib',
+    filename: 'orecore-lib.min.js',
+    library: 'orecore-lib',
     libraryTarget: 'umd',
   },
   plugins: [

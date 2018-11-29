@@ -11,7 +11,7 @@ Galactrum is a powerful new peer-to-peer platform for the next generation of fin
 ## Get Started
 ### Browser
 
-See the section below to generate your own bundle, or download the pre-generated [minified file](dist/galactrum-lib.min.js)
+See the section below to generate your own bundle, or download the pre-generated [minified file](dist/orecore-lib.min.js)
 
 
 ## Docs
@@ -48,22 +48,22 @@ Some examples can be found [here](docs/examples.md), below is a list of direct l
 
 ## Contributing
 
-Please send pull requests for bug fixes, code optimization, and ideas for improvement. For more information on how to contribute, please refer to our [CONTRIBUTING](https://github.com/GAB5TER/galactrum-lib/blob/master/CONTRIBUTING.md) file.
+Please send pull requests for bug fixes, code optimization, and ideas for improvement. For more information on how to contribute, please refer to our [CONTRIBUTING](https://github.com/GAB5TER/orecore-lib/blob/master/CONTRIBUTING.md) file.
 
 ## Building the Browser Bundle
 
-To build a galactrum-lib full bundle for the browser:
+To build a orecore-lib full bundle for the browser:
 
 ```sh
 npm run build
 ```
 
-This will generate files named `galactrum-lib.js` and `galactrum-lib.min.js` in the `dist/` folder.
+This will generate files named `orecore-lib.js` and `orecore-lib.min.js` in the `dist/` folder.
 
 ## Usage on Browser
 
 ```
-<script src='./dist/galactrum-lib.min.js' type="text/javascript"></script>
+<script src='./dist/orecore-lib.min.js' type="text/javascript"></script>
 <script>
   const PrivateKey = orecore.PrivateKey;
   const privateKey = new PrivateKey();
@@ -74,8 +74,8 @@ This will generate files named `galactrum-lib.js` and `galactrum-lib.min.js` in 
 ## Development & Tests
 
 ```sh
-git clone https://github.com/GAB5TER/galactrum-lib
-cd galactrum-lib
+git clone https://github.com/GAB5TER/orecore-lib
+cd orecore-lib
 npm install
 ```
 
