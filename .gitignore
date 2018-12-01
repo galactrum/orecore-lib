@@ -19,10 +19,10 @@ report
 .DS_Store
 
 
-bitcore.js
-bitcore.min.js
-bitcore.js.sig
-bitcore.min.js.sig
+orecore.js
+orecore.min.js
+orecore.js.sig
+orecore.min.js.sig
 tests.js
 
 launch.json
