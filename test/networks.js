@@ -26,7 +26,8 @@ describe('Networks', function() {
     networks.testnet.networkMagic.should.deep.equal(new Buffer('b1ded0ab', 'hex'));
     networks.testnet.port.should.equal(16270);
     networks.testnet.dnsSeeds.should.deep.equal([
-     'seed1.testnet.galactrum.network',
+     'testnet.galactrum.network',
+     'seed1.testnet.galactrum.network'
     ]);
   });
 
