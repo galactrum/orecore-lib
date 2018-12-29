@@ -10,10 +10,10 @@ var fs = require('fs');
 var should = require('chai').should();
 
 // https://test-insight.dash.org/block/0000000cc55c08ed64afb41c7c2f382a64901eadfcc6663c4e70987fdc0e8401
-var dataRawBlockBuffer = fs.readFileSync('test/data/blk19976-testnet.dat');
-var dataRawBlockBinary = fs.readFileSync('test/data/blk19976-testnet.dat', 'binary');
-var dataRawId = '0000000cc55c08ed64afb41c7c2f382a64901eadfcc6663c4e70987fdc0e8401';
-var data = require('../data/blk19976-testnet');
+var dataRawBlockBuffer = fs.readFileSync('test/data/blk46074-testnet.dat');
+var dataRawBlockBinary = fs.readFileSync('test/data/blk46074-testnet.dat', 'binary');
+var dataRawId = '00000122140054091bf33489e418cbb1deb49c6e27da2430d9fa0b0104a0a962';
+var data = require('../data/blk46074-testnet');
 
 describe('BlockHeader', function() {
 
@@ -208,14 +208,14 @@ describe('BlockHeader', function() {
 
     it('should instantiate from a raw block binary', function() {
       var x = BlockHeader.fromRawBlock(dataRawBlockBinary);
-      x.version.should.equal(4);
-      new BN(x.bits).toString('hex').should.equal('1d5298ed');
+      x.version.should.equal(536870912);
+      new BN(x.bits).toString('hex').should.equal('1e01f0f9');
     });
 
     it('should instantiate from raw block buffer', function() {
       var x = BlockHeader.fromRawBlock(dataRawBlockBuffer);
-      x.version.should.equal(4);
-      new BN(x.bits).toString('hex').should.equal('1d5298ed');
+      x.version.should.equal(536870912);
+      new BN(x.bits).toString('hex').should.equal('1e01f0f9');
     });
 
   });
@@ -259,31 +259,31 @@ describe('BlockHeader', function() {
   });
 
   describe('#getDifficulty', function() {
-    it('should get the correct difficulty for block 19976', function() {
+    it('should get the correct difficulty for testnet block 46074', function() {
       var x = BlockHeader.fromRawBlock(dataRawBlockBuffer);
-      x.bits.should.equal(0x1d5298ed);
-      x.getDifficulty().should.equal(121067.3);
+      x.bits.should.equal(0x1e01f0f9);
+      x.getDifficulty().should.equal(2012.15);
     });
 
     it('should get the correct difficulty for testnet block 52065', function() {
       var x = new BlockHeader({
-        bits: 0x1e01594c
+        bits: 0x1e0fffff
       });
-      x.getDifficulty().should.equal(2896.01);
+      x.getDifficulty().should.equal(24.413);
     });
 
-    it('should get the correct difficulty for livenet block 273043', function() {
+    it('should get the correct difficulty for livenet block 100000', function() {
       var x = new BlockHeader({
-        bits: 0x1b1c9b89
+        bits: 0x1b0ea7b0
       });
-      x.getDifficulty().should.equal(2290.82808262);
+      x.getDifficulty().should.equal(4471.84367034);
     });
 
-    it('should get the correct difficulty for livenet block 330000', function() {
+    it('should get the correct difficulty for livenet block 200000', function() {
       var x = new BlockHeader({
-        bits: 0x1b20dc66
+        bits: 0x1b4cebf8
       });
-      x.getDifficulty().should.equal(1994.31352718);
+      x.getDifficulty().should.equal(851.96966402);
     });
 
     it('should use exponent notation if difficulty is larger than Javascript number', function() {

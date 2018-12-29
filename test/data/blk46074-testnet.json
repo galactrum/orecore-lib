@@ -1,12 +1,12 @@
 {
   "header":{
-    "hash":"0000000cc55c08ed64afb41c7c2f382a64901eadfcc6663c4e70987fdc0e8401",
-    "version":4,
-    "prevHash":"00000052b0a113a2a771ead8b518bbdc29d3e36f1150aea8436180ee8b9cea97",
-    "merkleRoot":"545fb6d1a7bac2b4806d90ed900de0b8b17fee330e9b16843659f28d660f95b1",
-    "time":1465534863,
-    "bits":491952365,
-    "nonce":494388
+    "hash":"00000122140054091bf33489e418cbb1deb49c6e27da2430d9fa0b0104a0a962",
+    "version":536870912,
+    "prevHash":"0000019ea4298f7a5045206f00d77ec94db761bf1870ee7cfc79b6edd5076fec",
+    "merkleRoot":"718d603dd16da11eeb7ec6cda2eb0d84b6dfd85dddfd78c8b4399f6963826025",
+    "time":1524870805,
+    "bits":503443705,
+    "nonce":37028
   },
   "transactions":[
     {

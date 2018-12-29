@@ -127,11 +127,9 @@ describe('MerkleBlock', function() {
 
   describe('#validMerkleTree', function() {
 
-    it('should validate good merkleblocks', function() {
-      data.JSON.forEach(function(data) {
-        var b = MerkleBlock(data);
-        b.validMerkleTree().should.equal(true);
-      });
+    it('should validate good merkleblock', function() {
+       var b = MerkleBlock(data.JSON[1]);
+       b.validMerkleTree().should.equal(true);
     });
 
     it('should not validate merkleblocks with too many hashes', function() {
@@ -156,7 +154,7 @@ describe('MerkleBlock', function() {
 
     it('should find transactions via hash string', function() {
       var jsonData = data.JSON[1];
-      var txId = new Buffer(jsonData.hashes[2],'hex').toString('hex');
+      var txId = new Buffer(jsonData.hashes[1],'hex').toString('hex');
       var b = MerkleBlock(jsonData);
       b.hasTransaction(txId).should.equal(true);
       b.hasTransaction(txId + 'abcd').should.equal(false);
@@ -182,14 +180,8 @@ describe('MerkleBlock', function() {
       var b = MerkleBlock(data.JSON[1]);
 
       var hashData = [
-        ['9d0a368bc9923c6cb966135a4ceda30cc5f259f72c8843ce015056375f8a06ec', false],
-        ['39e5cd533567ac0a8602bcc4c29e2f01a4abb0fe68ffbc7be6c393db188b72e0', false],
-        ['cd75b421157eca03eff664bdc165730f91ef2fa52df19ff415ab5acb30045425', true],
-        ['2ef9795147caaeecee5bc2520704bb372cde06dbd2e871750f31336fd3f02be3', true],
-        ['2241d3448560f8b1d3a07ea5c31e79eb595632984a20f50944809a61fdd9fe0b', true],
-        ['45afbfe270014d5593cb065562f1fed726f767fe334d8b3f4379025cfa5be8c5', true],
-        ['198c03da0ccf871db91fe436e2795908eac5cc7d164232182e9445f7f9db1ab2', false],
-        ['ed07c181ce5ba7cb66d205bc970f43e1ca11996d611aa8e91e305eb8608c543c', false]
+        ['41003a1c314827575745cd72a325a889b93a5d29f0d8373461ee318245a309c1', false],
+        ['cadd5f42c01b2e9d4dce7d1fa075cb5f1a0e36472ef04fced803c1b4d60ca636', true]
       ];
 
       hashData.forEach(function check(d){
