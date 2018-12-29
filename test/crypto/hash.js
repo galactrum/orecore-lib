@@ -136,4 +136,26 @@ describe('Hash', function() {
 
   });
 
+  describe('#lyra2rev2', function() {
+
+    it('calculates the hash of this buffer correctly', function() {
+      var hash = Hash.lyra2rev2(buf);
+      hash.toString('hex')
+        .should.equal('91d33ad4bce21b02893dd72a7f35e80433826c0dac13c0b07f72c521bff27c5f');
+    });
+
+    it('calculates the hash of the Galactrum genesis block correctly', function() {
+      var genesishex = '01000000000000000000000000000000000000000000000000000000000000000000000028eb69aa985ba7c78b9ba4330aa6be8b86cbe692ec766bf6f7a9f3d09e750e6d834b2f5af0ff0f1e304720020101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff4f04ffff001d010447746865677561726469616e2031332f4f63742f3230313720426974636f696e20707269636520736f6172732061626f75742024352c30303020746f207265636f72642068696768ffffffff0100ca9a3b000000003432049fad2642410713ee18830254864c23793fa9dfe708985b8aa779edb03f6ca8003dc96d0d60f874161333756d8bb529a20eac00000000';
+      var buffer = new Buffer(genesishex, 'hex');
+      var hash = Hash.lyra2rev2(buffer);
+      hash.toString('hex')
+        .should.equal('ae800e3786f59632e2b62402f37a778bf0c75238874f397846a023a92d080000'); // little endian
+    });
+
+    it('fails when the input is not a buffer', function() {
+      Hash.lyra2rev2.bind(Hash, str).should.throw('Invalid Argument');
+    });
+
+  });
+
 });

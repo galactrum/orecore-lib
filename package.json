@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "jshint . || true",
-    "test": "npm run build && npm run test:node && npm run lint",
+    "test": "npm run test:node && npm run lint",
     "test:node": "mocha --no-timeouts --recursive",
     "test:browser": "karma start ./karma.conf.js --single-run",
     "coverage": "nyc mocha --recursive",
@@ -102,6 +102,7 @@
     "request": "browser-request"
   },
   "dependencies": {
+    "orehash": "GAB5TER/orehash",
     "@dashevo/x11-hash-js": "^1.0.2",
     "bn.js": "=2.0.4",
     "bs58": "=2.0.0",
